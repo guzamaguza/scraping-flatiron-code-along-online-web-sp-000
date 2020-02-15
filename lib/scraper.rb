@@ -17,15 +17,24 @@ class Scraper
   end
 
   def get_page
+    #get_page instance method will be responsible for using Nokogiri and open-uri to grab the entire HTML document from the web page.
       doc = Nokogiri::HTML(open("http://learn-co-curriculum.github.io/site-for-scraping/courses"))
   end
 
   def get_courses
+    #get_courses instance method will be responsible for using a CSS selector to grab all of the HTML elements that contain a course
       self.get_page.css(".post")
   end
 
   def make_courses
+      #make_courses method will be responsible for actually instantiating Course objects and giving each course object the correct title, schedule and description attribute that we scraped from the page.
+      self.get_courses.each do |post|
+          course = Course.new
+          course.title = post.css("h2").text
+          course.schedule = post.css("date").text
+          course.description = post.css("").text
 
+      end
   end
 
   def print_courses
