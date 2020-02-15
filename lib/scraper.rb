@@ -20,7 +20,6 @@ class Scraper
   def get_page
     #get_page instance method will be responsible for using Nokogiri and open-uri to grab the entire HTML document from the web page.
       doc = Nokogiri::HTML(open("http://learn-co-curriculum.github.io/site-for-scraping/courses"))
-       binding.pry
   end
 
   def get_courses
